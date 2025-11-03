@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="100%" height="100%" fill="#FFFBEB"/>
+  <g fill="#92400E">
+    <ellipse cx="200" cy="160" rx="120" ry="60" />
+    <ellipse cx="200" cy="120" rx="80" ry="40" />
+  </g>
+  <text x="20" y="40" font-size="20" fill="#92400E">Bread</text>
+</svg>

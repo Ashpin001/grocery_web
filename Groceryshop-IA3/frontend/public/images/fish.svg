@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="100%" height="100%" fill="#EFF6FF"/>
+  <path d="M60 150 Q120 100 200 150 Q280 200 340 150 Q280 120 200 150 Q120 180 60 150" fill="#60A5FA" />
+  <text x="20" y="40" font-size="18" fill="#1E40AF">Fish</text>
+</svg>

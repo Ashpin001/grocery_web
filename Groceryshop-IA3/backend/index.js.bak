@@ -1,0 +1,70 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
+
+// Initialize express
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// Import routes
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+
+// Apply routes
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
+
+// Mongoose configuration
+mongoose.set('strictQuery', false);
+
+// MongoDB Connection Options
+const mongooseOptions = {
+  dbName: 'grocerystore',
+  retryWrites: true,
+  w: 'majority',
+  serverSelectionTimeoutMS: 5000
+};
+
+// Mongoose event handlers
+mongoose.connection.on('connected', () => {
+  console.log('✅ MongoDB connected successfully');
+  // Start server only after successful connection
+  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+});
+
+mongoose.connection.on('error', (err) => {
+  console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected');
+});
+
+// Handle process termination
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  process.exit(0);
+});
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  });

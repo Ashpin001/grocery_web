@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="100%" height="100%" fill="#F0FDFF"/>
+  <g fill="#06B6D4">
+    <rect x="160" y="90" width="80" height="110" rx="12" />
+  </g>
+  <text x="20" y="40" font-size="18" fill="#075985">Yogurt</text>
+</svg>
